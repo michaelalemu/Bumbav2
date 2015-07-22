@@ -26,7 +26,7 @@ class Comment
 		$d['dt'] = strtotime($d['dt']);
 
 		// Reduce amount of letters
-		$d['comment'] = substr(strip_tags($d['comment']), 0, 20);
+		$d['comment'] = substr(strip_tags($d['comment']), 0, 40);
 
 		return '
 					<div class="tile tile-collapse">
