@@ -1,0 +1,22 @@
+<?php
+// Script for adding new comment
+
+include "connect.php";
+
+$poster = mysql_real_escape_string($_POST['poster']);
+$comment = mysql_real_escape_string($_POST['comment']);
+$original_id = $_GET['id'];
+
+// Insert into database
+$query = "INSERT INTO post_comment (poster,comment,post_id) VALUES (:poster,:comment,:post_id)";
+$statement = $db->prepare($query);
+$statement->bindParam(":poster", $poster, PDO::PARAM_STR);
+$statement->bindParam(":comment", $comment, PDO::PARAM_STR);
+$statement->bindParam(":post_id", $original_id, PDO::PARAM_INT);
+$statement->execute();
+
+// Return back
+header("Location: read-comments.php?id=".$original_id);
+
+exit();
+?>
