@@ -35,7 +35,7 @@ class Posts
 									<div class="card-action">
 										<ul class="nav nav-list pull-left">
 											<li>
-												<a href="javascript:void(0)"><span class="icon">add</span></a>
+												<a href="read-comments.php?id='.$d['id'].'"><span class="icon">add</span></a>
 											</li>
 											<li>
 												<a href="javascript:void(0)"><span class="icon">delete</span></a>

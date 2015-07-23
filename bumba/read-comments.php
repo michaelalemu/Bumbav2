@@ -1,4 +1,14 @@
 <?php
+session_start();
+?>
+<?php
+if(!isset($_SESSION["username"]))
+   {
+   header("Location: login.php?login_first");
+   exit;
+   }
+?>
+<?php
 
 // Error reporting:
 error_reporting(E_ALL^E_NOTICE);
@@ -44,7 +54,7 @@ if(isset($_GET['id'])){
 		</div>
 		<div class="container">
 			<section class="content-inner">
-				<div class="tile-wrap">
+				<div class="tile-wrap tile-wrap-animation">
 
 					<div class="tile tile-collapse tile-alt">
 						<div data-target="#tile-collapse-16" data-toggle="tile">

@@ -7,7 +7,7 @@
   <title>Bumba-App</title>
 
   <!-- css -->
-  <link href="/GitHub/Bumbav1/bumba/css/base.min.css" rel="stylesheet">
+  <link href="css/base.min.css" rel="stylesheet">
 
   <!-- favicon -->
   <!-- ... -->
@@ -67,7 +67,7 @@
               <a href="javascript:void(0)"><span class="icon icon-lg">add_to_photos</span>Upload Photo</a>
             </li>
             <li>
-              <a href="page-login.html"><span class="icon icon-lg">exit_to_app</span>Logout</a>
+              <a href="logout.php"><span class="icon icon-lg">exit_to_app</span>Logout</a>
             </li>
           </ul>
         </div>

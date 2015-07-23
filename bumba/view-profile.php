@@ -1,4 +1,14 @@
 <?php
+session_start();
+?>
+<?php
+if(!isset($_SESSION["username"]))
+   {
+   header("Location: login.php?login_first");
+   exit;
+   }
+?>
+<?php
 
 // Error reporting:
 error_reporting(E_ALL^E_NOTICE);
