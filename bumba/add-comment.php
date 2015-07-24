@@ -11,12 +11,12 @@ $comment = mysql_real_escape_string($_POST['comment']);
 $original_id = mysql_real_escape_string($_GET['id']);
 
 // Get user_id based on session variable
-$user_username = mysql_real_escape_string($_SESSION['username']);
+$user_id = mysql_real_escape_string($_SESSION['user_id']);
 
 // Insert into database
-$query = "INSERT INTO post_comment (poster,comment,post_id) VALUES (:poster,:comment,:post_id)";
+$query = "INSERT INTO post_comment (user_id,comment,post_id) VALUES (:user_id,:comment,:post_id)";
 $statement = $db->prepare($query);
-$statement->bindParam(":poster", $user_username, PDO::PARAM_STR);
+$statement->bindParam(":user_id", $user_id, PDO::PARAM_STR);
 $statement->bindParam(":comment", $comment, PDO::PARAM_STR);
 $statement->bindParam(":post_id", $original_id, PDO::PARAM_INT);
 $statement->execute();
