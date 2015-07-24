@@ -18,7 +18,7 @@ include "include/posts.class.php";
 
 // Select all posts and populate the $posts array with objects
 $posts = array();
-$result = mysql_query("SELECT * FROM user_post ORDER BY id DESC LIMIT 10");
+$result = mysql_query("SELECT * FROM user_post ORDER BY post_id DESC LIMIT 10");
 
 while($row = mysql_fetch_assoc($result))
 {
