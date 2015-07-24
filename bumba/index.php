@@ -52,4 +52,4 @@ while($row = mysql_fetch_assoc($result))
 		</div>
 	</div>
 
-<?php include('/include/footer.php');?>
+<?php include('include/footer.php');?>
