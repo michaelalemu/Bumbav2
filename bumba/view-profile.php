@@ -30,13 +30,13 @@ if(isset($_GET['id'])){
 
 
 	// Select all posts and populate the $postsbyuser array with objects
-	$query_for_posts = "SELECT * FROM user_post ORDER BY id ASC";
+	$query_for_posts = "SELECT * FROM user_post ORDER BY post_id ASC";
 	$statement_for_posts = $db->query($query_for_posts);
 
 	while($r = $statement_for_posts->fetch()) {
 		$poster = htmlspecialchars($r['poster']);
 		$comment = htmlspecialchars($r['comment']);
-		$id = $r['id'];
+		$post_id = $r['post_id'];
 		$user_id = $r['user_id'];
 		if($user_id == $_GET['id']) {
 			$postsofuser[] = new PostsOfUser($r);
@@ -92,3 +92,24 @@ if(isset($_GET['id'])){
 	</div>
 
 <?php include('include/footer.php');?>
+<div aria-hidden="true" class="modal fade" id="modal" role="dialog" tabindex="-1">
+	<div class="modal-dialog modal-xs">
+		<div class="modal-content">
+			<div class="modal-heading">
+				<a class="modal-close" data-dismiss="modal">&times;</a>
+				<h2 class="modal-title">Delete your post</h2>
+			</div>
+			<div class="modal-inner">
+				<p>Do you really want to delete this post?</p>
+			</div>
+			<div class="modal-footer">
+				<p class="text-right">
+					<form action="delete-post.php?<?php echo $_GET['delete_post_id']; ?>" method="get">
+						<button class="btn btn-flat btn-alt" type="submit">Yes</button>
+						<button class="btn btn-flat btn-alt" data-dismiss="modal" type="button">Close</button>
+					</form>
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
