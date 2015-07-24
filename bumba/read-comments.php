@@ -18,24 +18,23 @@ include "include/comment.class.php";
 
 // Select and show post based on id in URL
 if(isset($_GET['id'])){
-	$id = $_GET['id'];
-	$id_in_url = $id;
-	$query_for_post = "SELECT * FROM user_post WHERE id =:id";
+	$id_in_url = $_GET['id'];
+	$query_for_post = "SELECT * FROM user_post WHERE post_id =:post_id";
 	$statement_for_post = $db->prepare($query_for_post);
-	$statement_for_post->bindParam(":id", $_GET['id'], PDO::PARAM_INT);
+	$statement_for_post->bindParam(":post_id", $id_in_url, PDO::PARAM_INT);
 	$statement_for_post->execute();
 	$row1 = $statement_for_post->fetchObject();
 	$post = htmlspecialchars($row1->post_content);
 
 
 	// Select all comments and populate the $comments array with objects
-	$query_for_comments = "SELECT * FROM post_comment ORDER BY id ASC";
+	$query_for_comments = "SELECT * FROM post_comment ORDER BY comment_id ASC";
 	$statement_for_comments = $db->query($query_for_comments);
 
 	while($r = $statement_for_comments->fetch()) {
 		$poster = htmlspecialchars($r['poster']);
 		$comment = htmlspecialchars($r['comment']);
-		$id = $r['id'];
+		$comment_id = $r['comment_id'];
 		$post_id = $r['post_id'];
 		if($post_id == $_GET['id']) {
 			$comments[] = new Comment($r);
