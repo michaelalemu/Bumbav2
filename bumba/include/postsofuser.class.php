@@ -35,7 +35,7 @@ class PostsOfUser
 										<a href="javascript:void(0)"><span class="icon">star</span></a>
 									</li>
 									<li>
-										<a href="javascript:void(0)"><span class="icon">delete</span></a>
+										<a href="?id='.$_SESSION['user_id'].'&delete_post_id='.$d['post_id'].'#modal" data-toggle="modal"><span class="icon">delete</span></a>
 									</li>
 									<li class="dropdown">
 										<a class="dropdown-toggle" data-toggle="dropdown"><span class="icon">settings</span></a>
@@ -54,11 +54,12 @@ class PostsOfUser
 								</ul>
 							</div>
 							<div class="tile-inner">
-								<div class="text-overflow"><a href="read-comments.php?id='.$d['id'].'">'.$d['post_content'].'</a></div>
+								<div class="text-overflow"><a href="read-comments.php?id='.$d['post_id'].'">'.$d['post_content'].'</a></div>
 							</div>
 						</div>
 					</div>
 		';
+		return $d['post_content'];
 	}
 }
 
