@@ -131,18 +131,20 @@ include "connect.php";
 $username = $_POST["username"]; 
 $password = md5($_POST["password"]); 
 
-$abfrage = "SELECT user_username, user_password FROM users WHERE user_username LIKE '$username' LIMIT 1"; 
-$ergebnis = mysql_query($abfrage); 
+$abfrage = "SELECT user_id, user_username, user_password FROM users WHERE user_username LIKE '$username' LIMIT 1"; 
+$ergebnis = mysql_query($abfrage);
 $row = mysql_fetch_object($ergebnis);
+$user_username = htmlspecialchars($row->user_username);
+$user_id = htmlspecialchars($row->user_id);
 
-if($row->user_password == $password) 
-    { 
-    $_SESSION["username"] = $username; 
-    header("Location: index.php");
-    } 
-else 
-    { 
-    echo "Benutzername und/oder Passwort waren falsch. <a href=\"login.php\">Login</a>";
-    }
-
+if($row->user_password == $password)
+{
+	$_SESSION["username"] = $user_username;
+	$_SESSION["user_id"] = $user_id;
+	header("Location: index.php");
+}
+else
+{
+	echo "Benutzername und/oder Passwort waren falsch. <a href=\"login.php\">Login</a>";
+}
 ?>
