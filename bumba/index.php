@@ -9,7 +9,6 @@ if(!isset($_SESSION["username"]))
    }
 ?>
 <?php
-
 // Error reporting:
 error_reporting(E_ALL^E_NOTICE);
 
