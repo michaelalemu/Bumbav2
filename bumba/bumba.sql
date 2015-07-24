@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 23. Jul 2015 um 16:48
+-- Erstellungszeit: 24. Jul 2015 um 23:15
 -- Server-Version: 5.6.24
 -- PHP-Version: 5.6.8
 
@@ -27,18 +27,18 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `post_comment` (
-  `id` int(11) NOT NULL,
+  `comment_id` int(11) NOT NULL COMMENT 'Unique comment id',
   `comment` text COLLATE latin1_general_ci NOT NULL,
-  `poster` varchar(30) COLLATE latin1_general_ci NOT NULL,
+  `user_id` varchar(30) COLLATE latin1_general_ci NOT NULL,
   `date` date NOT NULL,
   `post_id` int(11) NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=134 DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=135 DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 
 --
 -- Daten für Tabelle `post_comment`
 --
 
-INSERT INTO `post_comment` (`id`, `comment`, `poster`, `date`, `post_id`) VALUES
+INSERT INTO `post_comment` (`comment_id`, `comment`, `user_id`, `date`, `post_id`) VALUES
 (1, 'This comment section is still very problematic', 'Me', '0000-00-00', 1),
 (2, 'Comments don\\''t show after you click submit, you have to either go back to main page and then click on the post again or reload. By reloading the sql statement is sent again', 'Me', '0000-00-00', 1),
 (3, 'sdadasdasdasd', 'Jard', '0000-00-00', 1),
@@ -115,6 +115,7 @@ INSERT INTO `post_comment` (`id`, `comment`, `poster`, `date`, `post_id`) VALUES
 (131, 'waait', 'hi', '0000-00-00', 10),
 (132, 'ich gebs auf', 'mike', '0000-00-00', 10),
 (133, 'jeah', 'norman', '0000-00-00', 33),
+(134, 'now my user_id is saved when i post this comment', '1', '0000-00-00', 33),
 (67, 'You mean the penis he does not have', '#rekt', '0000-00-00', 26),
 (68, '/thread', '', '0000-00-00', 26),
 (69, '10/10 would shit again', '', '0000-00-00', 26),
@@ -192,7 +193,7 @@ INSERT INTO `users` (`user_id`, `user_username`, `user_password`, `user_created`
 --
 
 CREATE TABLE IF NOT EXISTS `user_post` (
-  `id` int(11) NOT NULL COMMENT 'Unique post id',
+  `post_id` int(11) NOT NULL COMMENT 'Unique post id',
   `user_id` int(11) NOT NULL COMMENT 'Posted by user_id',
   `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Post created time',
   `post_content` text COLLATE latin1_general_ci NOT NULL COMMENT 'Content of post'
@@ -202,15 +203,14 @@ CREATE TABLE IF NOT EXISTS `user_post` (
 -- Daten für Tabelle `user_post`
 --
 
-INSERT INTO `user_post` (`id`, `user_id`, `time`, `post_content`) VALUES
+INSERT INTO `user_post` (`post_id`, `user_id`, `time`, `post_content`) VALUES
 (1, 1, '2015-07-22 19:57:43', 'Hello Jardyn: I have been expecting you...'),
 (2, 1, '2015-07-22 20:23:02', 'New Topic upper righ: to add new post click on the up right'),
 (3, 1, '2015-07-22 20:36:26', 'Hola Karam: Kaykay21 ist ein'),
-(4, 0, '2015-07-21 16:16:09', 'new post: wololo'),
-(5, 0, '2015-07-21 16:16:09', 'Jazzimus primmeeee: Elooooo niko sion dnis mac'),
+(5, 2, '2015-07-23 15:35:11', 'Jazzimus primmeeee: Elooooo niko sion dnis mac'),
 (6, 0, '2015-07-21 16:16:09', 'tahir ist ein spasst: huahahahahahahahahahahahahah'),
 (7, 0, '2015-07-22 20:23:21', 'Norman ist ein *****'),
-(8, 0, '2015-07-21 16:16:09', 'testing 2: this shouild redirect to front page'),
+(8, 2, '2015-07-23 15:35:19', 'testing 2: this shouild redirect to front page'),
 (9, 0, '2015-07-21 16:16:09', 'Ich bin Karam: Ich bin schwul und ich mag penis meine lieblings farbe ist rosa'),
 (10, 0, '2015-07-21 16:16:09', 'Neue Update: Jetzt mit ID und timestamp!'),
 (11, 0, '2015-07-21 16:16:09', 'Test new: doh forgot to set to auto'),
@@ -245,7 +245,7 @@ INSERT INTO `user_post` (`id`, `user_id`, `time`, `post_content`) VALUES
 -- Indizes für die Tabelle `post_comment`
 --
 ALTER TABLE `post_comment`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`comment_id`);
 
 --
 -- Indizes für die Tabelle `users`
@@ -257,7 +257,7 @@ ALTER TABLE `users`
 -- Indizes für die Tabelle `user_post`
 --
 ALTER TABLE `user_post`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`post_id`);
 
 --
 -- AUTO_INCREMENT für exportierte Tabellen
@@ -267,7 +267,7 @@ ALTER TABLE `user_post`
 -- AUTO_INCREMENT für Tabelle `post_comment`
 --
 ALTER TABLE `post_comment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=134;
+  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Unique comment id',AUTO_INCREMENT=135;
 --
 -- AUTO_INCREMENT für Tabelle `users`
 --
@@ -277,7 +277,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT für Tabelle `user_post`
 --
 ALTER TABLE `user_post`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Unique post id',AUTO_INCREMENT=34;
+  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Unique post id',AUTO_INCREMENT=34;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
