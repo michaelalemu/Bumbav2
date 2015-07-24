@@ -52,7 +52,7 @@
             <img alt="John Smith" src="images/samples/landscape.jpg">
           </div>
           <div class="menu-top-info">
-            <a class="menu-top-user" href="javascript:void(0)"><span class="avatar pull-left"><img alt="alt text for John Smith avatar" src="images/users/avatar-001.jpg"></span><?php echo $user_surname ?></a>
+            <a class="menu-top-user" href="javascript:void(0)"><span class="avatar pull-left"><img alt="alt text for John Smith avatar" src="images/users/avatar-001.jpg"></span><?php echo $_SESSION['username']; ?></a>
           </div>
           <div class="menu-top-info-sub">
             <small>Some additional information about John Smith</small>
@@ -61,7 +61,10 @@
         <div class="menu-content">
           <ul class="nav">
             <li>
-              <a href="view-profile.php?id=1"><span class="icon icon-lg">account_box</span>View Profile</a>
+              <a href="index.php"><span class="icon icon-lg">home</span>Home</a>
+            </li>
+            <li>
+              <a href="view-profile.php?id=<?php echo $_SESSION['user_id']; ?>"><span class="icon icon-lg">account_box</span>View Profile</a>
             </li>
             <li>
               <a href="javascript:void(0)"><span class="icon icon-lg">add_to_photos</span>Upload Photo</a>
